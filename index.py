@@ -13,7 +13,7 @@ root.geometry("900x500+300+200")  #resizing the window
 root.title(f"Weather in {city_country[:-3]}") #title of the window
 
 #search box
-search_img = tk.PhotoImage(file = "logo.png")
+search_img = tk.PhotoImage(file = "./images/logo.png")
 myimage=Label(image=search_img)
 myimage.place(x=20, y=20)
 
