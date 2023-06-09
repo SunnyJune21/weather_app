@@ -39,9 +39,6 @@ weather = get_weather(api_key, city_country)
 print(weather['temp'])
 print(weather['feels_like_temp'])
 
-
-
-
 def display_city_name(city):
     city_label = Label(root, text=f"{city_country[:-3]}")
     city_label.config(font=("Helvetica", 28))
@@ -56,7 +53,6 @@ def display_statistics(weather):
 
     temp.pack(side='top')
     feels_like_temp.pack(side='top')
-
 
 display_city_name(city_country)
 display_statistics(weather)
