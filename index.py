@@ -13,9 +13,13 @@ root.geometry("900x500+300+200")  #resizing the window
 root.title(f"Weather in {city_country[:-3]}") #title of the window
 
 #search box
-search_img = tk.PhotoImage(file = "./images/logo.png")
+search_img = tk.PhotoImage(file = "./images/search.png")
 myimage=Label(image=search_img)
 myimage.place(x=20, y=20)
+
+textfield=tk.Entry(root, justify="center", width=20, font=("Helvetica", 25, "bold"), fg="black", background="white", border=0)
+textfield.place(x=100,y=65)
+textfield.focus()
 
 def get_weather(api_key, city):
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
