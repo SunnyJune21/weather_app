@@ -4,6 +4,7 @@ from geopy.geocoders import Nominatim
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk,messagebox
+from PIL import Image, ImageTk
 
 city_country = "Kharkiv,UA"
 api_key = "fe397cb63ba2f5bf16a59b217e102af0"
@@ -20,6 +21,12 @@ myimage.place(x=20, y=20)
 textfield=tk.Entry(root, justify="center", width=20, font=("Helvetica", 25, "bold"), fg="black", background="white", border=0)
 textfield.place(x=100,y=65)
 textfield.focus()
+
+original_logo = Image.open("./images/logo.png")
+resized_logo = original_logo.resize((250, 250))
+logo_image = ImageTk.PhotoImage(resized_logo)
+logo = tk.Label(image=logo_image)
+logo.place(x=200, y=150)
 
 def get_weather(api_key, city):
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
