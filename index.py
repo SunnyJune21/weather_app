@@ -14,11 +14,21 @@ def onClick():
     print(city)
     weather=getWeather(city)
     print(weather)
+    display_city_name(city)
+    display_statistics(weather)
+
+def display_city_name(city):
+    capitalized_city = city.capitalize()
+    city_label.config(text=f"The weather in {capitalized_city}")
+
+def display_statistics(weather):
+    temp.config(text = f"Temperature: {weather['temp']} C", font=("Poppies", 30))
+    feels_like_temp.config(text=f"Feels like: {weather['feels_like_temp']} C")
 
 #creating a window for the app
 root = Tk() # the actual window
 root.geometry("900x500+300+200")  #resizing the window
-root.title(f"Weather in ") #title of the window
+root.title(f"Weather") #title of the window
 
 #creating a search box, using tkinter and its' PhotoImage
 #search_img = tk.PhotoImage(file = "./images/search.png")
@@ -56,8 +66,14 @@ label3.place(x=430,y=400)
 label4=Label(root, text='PRESSURE', font=('Helvetica', 15, 'bold'), fg='white')
 label4.place(x=650,y=400)
 
-temp=Label(font=("poppies", 20, "bold"))
-temp.place(x=400, y=150)
+city_label = Label(root, font=("Helvetica", 28))
+city_label.pack(side='top')
+
+feels_like_temp = Label(root, font=("Helvetica", 28))
+feels_like_temp.place(x=500, y=200)
+
+temp = Label(font=("poppies", 20, "bold"))
+temp.place(x=500, y=150)
 conditions=Label(font=("poppies", 20, "bold"))
 conditions.place(x=400, y=250)
 
