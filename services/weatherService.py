@@ -13,7 +13,21 @@ def getWeather(city):
     feels_like_temp = response['main']['feels_like']
     feels_like_temp = round(feels_like_temp - 273.15) #convert to C and round the temp
 
+    conditions = response['weather'][0]['main']
+    description = response['weather'][0]['description']
+    pressure = response['main']['pressure']
+    humidity = response['main']['humidity']
+    wind = response['wind']['speed']
+
+    #temp.config(text=f"{temp}°")
+    #conditions.config(text=(conditions, "|", "FEELS", "LIKE", temp, "°"))
+
     return {
         'temp':temp,
         'feels_like_temp': feels_like_temp,
+        'conditions': conditions,
+        'description': description,
+        'pressure': pressure,
+        'humidity': humidity,
+        'wind': wind
     }
