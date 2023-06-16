@@ -8,32 +8,37 @@ from PIL import Image, ImageTk
 from timezonefinder import TimezoneFinder
 from datetime import datetime
 from services.weatherService import getWeather
-from services.timeService import getLocalTime
 
 
 def onClick():
     city = textfield.get()
     print(city)
     weather = getWeather(city)
+    country = weather['country']
+    root.title(f"Weather in {city}, {country}")
     # currentTime = getLocalTime(city)
     print(weather)
-    display_city_name(city)
+    display_city_name(city, country)
     display_statistics(weather)
 
 
-def display_city_name(city):
+def display_city_name(city, country):
     capitalized_city = city.capitalize()
-    city_label.config(text=f"The weather in {capitalized_city}")
+    city_label.config(text=f"The weather in {capitalized_city}, {country}")
 
 
 def display_statistics(weather):
-    temp.config(text=f"Temperature: {weather['temp']} C", font=("Poppies", 30))
-    feels_like_temp.config(text=f"Feels like: {weather['feels_like_temp']} C")
+    temp.config(
+        text=f"Temperature: {weather['temp']} °C  |  {weather['conditions']}", font=("Poppies", 32))
+    feels_like_temp.config(
+        text=f"Feels like: {weather['feels_like_temp']} °C")
     conditions.config(text=f"{weather['conditions']}")
     description.config(text=f"{weather['description']}")
-    pressure.config(text=f"{weather['pressure']}")
-    humidity.config(text=f"{weather['humidity']}")
-    wind.config(text=f"{weather['wind']}")
+    pressure.config(text=f"{weather['pressure']} hPa")
+    humidity.config(text=f"{weather['humidity']}%")
+    wind.config(text=f"{weather['wind']} m/sec")
+    sunrise.config(text=f"Sunrise is at {weather['sunrise']}")
+    sunset.config(text=f"Sunset is at {weather['sunset']}")
 
 
 # creating a window for the app
@@ -89,22 +94,25 @@ label4.place(x=650, y=400)
 city_label = Label(root, font=("Helvetica", 28))
 city_label.pack(side='top')
 
-feels_like_temp = Label(root, font=("Helvetica", 28))
+feels_like_temp = Label(root, font=("Helvetica", 24))
 feels_like_temp.place(x=500, y=200)
 
 temp = Label(font=("poppies", 20, "bold"))
 temp.place(x=500, y=150)
-conditions = Label(font=("Helvetica", 28, "bold"))
-conditions.place(x=500, y=250)
-
+conditions = Label(font=("Helvetica", 32, "bold"))
 
 wind = Label(text="...", font=("arial", 20, "bold"), fg='white')
-wind.place(x=120, y=430)
+wind.place(x=100, y=430)
 humidity = Label(text="...", font=("arial", 20, "bold"), fg='white')
-humidity.place(x=280, y=430)
+humidity.place(x=250, y=430)
 description = Label(text="...", font=("arial", 20, "bold"), fg='white')
 description.place(x=430, y=430)
 pressure = Label(text="...", font=("arial", 20, "bold"), fg='white')
-pressure.place(x=670, y=430)
+pressure.place(x=650, y=430)
+
+sunrise = Label(root, font=("Helvetica", 16), fg='white')
+sunrise.place(x=500, y=300)
+sunset = Label(root, font=("Helvetica", 16), fg='white')
+sunset.place(x=500, y=330)
 
 mainloop()  # keeps the window up on the screen

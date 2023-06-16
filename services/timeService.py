@@ -5,7 +5,7 @@ import pytz
 
 
 def getLocalTime(city):
-    geolocator = Nominatim(user_agent="geoapiExercises")
+    geolocator = Nominatim(user_agent="anastasia.nosich@gmail.com")
     location = geolocator.geocode(city)
     obj = TimezoneFinder()
     result = obj.timezone_at(lng=location.longitude, lat=location.latitude)
