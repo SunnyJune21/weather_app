@@ -1,12 +1,7 @@
-import requests
-import pytz
-from geopy.geocoders import Nominatim
 from tkinter import *
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
-from timezonefinder import TimezoneFinder
-from datetime import datetime
 from services.weatherService import getWeather
 
 
@@ -16,7 +11,6 @@ def onClick():
     weather = getWeather(city)
     country = weather['country']
     root.title(f"Weather in {city}, {country}")
-    # currentTime = getLocalTime(city)
     print(weather)
     display_city_name(city, country)
     display_statistics(weather)
@@ -67,15 +61,6 @@ logo_image = ImageTk.PhotoImage(resized_logo)
 logo = tk.Label(image=logo_image)
 logo.place(x=100, y=150)
 
-# name = Label(root, font=("arial", 15, "bold"))
-# name.place(x=30, y=100)
-# clock = Label(root, font=("Helvetica", 20))
-# clock.place(x=30, y=130)
-
-# clock.config(text=currentTime)
-# name.config(text="CURRENT WEATHER")
-# name.place(x=450, y=120)
-
 label1 = Label(root, text='WIND', font=('Helvetica', 15, 'bold'), fg='white')
 label1.place(x=120, y=400)
 
@@ -94,12 +79,12 @@ label4.place(x=650, y=400)
 city_label = Label(root, font=("Helvetica", 28))
 city_label.pack(side='top')
 
-feels_like_temp = Label(root, font=("Helvetica", 24))
-feels_like_temp.place(x=500, y=200)
-
 temp = Label(font=("poppies", 20, "bold"))
 temp.place(x=500, y=150)
 conditions = Label(font=("Helvetica", 32, "bold"))
+
+feels_like_temp = Label(root, font=("Helvetica", 24))
+feels_like_temp.place(x=500, y=200)
 
 wind = Label(text="...", font=("arial", 20, "bold"), fg='white')
 wind.place(x=100, y=430)
