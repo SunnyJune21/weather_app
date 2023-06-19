@@ -1,16 +1,29 @@
 from tkinter import *
 import tkinter as tk
+from tkinter import messagebox
+import requests
 from PIL import Image, ImageTk
 from services.weatherService import getWeather
 
 
 def onClick():
+    display_loading()
     city = textfield.get()
-    weather = getWeather(city)
-    country = weather['country']
-    root.title(f"Weather in {city}, {country}")
-    display_city_name(city, country)
-    display_statistics(weather)
+    try:
+        weather = getWeather(city)
+        country = weather['country']
+        root.title(f"Weather in {city.title()}, {country}")
+        display_city_name(city, country)
+        display_statistics(weather)
+
+    except KeyError:
+        error_message = "Invalid API response. The city you entered cannot be found"
+        messagebox.showerror("Error", error_message)
+        return None
+    except requests.exceptions.RequestException as e:
+        error_message = f"Network error {e}"
+        messagebox.showerror("Error", error_message)
+        return None
 
 
 def display_city_name(city, country):
@@ -30,6 +43,18 @@ def display_statistics(weather):
     wind.config(text=f"{weather['wind']} m/sec")
     sunrise.config(text=f"Sunrise is at {weather['sunrise']}")
     sunset.config(text=f"Sunset is at {weather['sunset']}")
+
+
+def display_loading():
+    temp.config(text="...")
+    feels_like_temp.config(text="...")
+    conditions.config(text="...")
+    description.config(text="...")
+    pressure.config(text="...")
+    humidity.config(text="...")
+    wind.config(text="...")
+    sunrise.config(text="...")
+    sunset.config(text="...")
 
 
 # creating a window for the app
