@@ -1,6 +1,5 @@
 from tkinter import *
 import tkinter as tk
-from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 from services.weatherService import getWeather
 
@@ -41,26 +40,28 @@ root.geometry("900x500+300+200")  # resizing the window
 root.title(f"Weather")  # title of the window
 
 # creating a search box, using tkinter and its' PhotoImage
-# search_img = tk.PhotoImage(file = "./images/search.png")
 myimage = Label(height=20, width=100)
 myimage.place(x=20, y=20)
 
 # creating a textfield in the search box image
 textfield = tk.Entry(root, justify="center", width=20, font=(
-    "Helvetica", 25, "bold"), fg="black", background="white", border=0)
+    "Helvetica", 25, "bold"), fg="black", background="white", border=0, insertwidth=2, insertontime=600)
 textfield.place(x=100, y=65)
 textfield.focus()
 
+# creating a button
 myimage_icon = Button(text="Search", height=2, borderwidth=0,
                       cursor="hand", bg="#404040", command=onClick)
 myimage_icon.place(x=400, y=64)
 
+# logo insertion
 original_logo = Image.open("./images/logo.png")
 resized_logo = original_logo.resize((250, 250))
 logo_image = ImageTk.PhotoImage(resized_logo)
 logo = tk.Label(image=logo_image)
 logo.place(x=100, y=150)
 
+# creating labels for weather conditions
 label1 = Label(root, text='WIND', font=('Helvetica', 15, 'bold'), fg='white')
 label1.place(x=120, y=400)
 
