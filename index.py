@@ -6,11 +6,9 @@ from services.weatherService import getWeather
 
 def onClick():
     city = textfield.get()
-    print(city)
     weather = getWeather(city)
     country = weather['country']
     root.title(f"Weather in {city}, {country}")
-    print(weather)
     display_city_name(city, country)
     display_statistics(weather)
 
