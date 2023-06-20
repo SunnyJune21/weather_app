@@ -68,7 +68,7 @@ myimage.place(x=20, y=20)
 
 # creating a textfield in the search box image
 textfield = tk.Entry(root, justify="center", width=20, font=(
-    "Helvetica", 25, "bold"), fg="black", background="white", border=0, insertwidth=2, insertontime=600)
+    "Helvetica", 25, "bold"), fg="black", background="white", border=0)
 textfield.place(x=100, y=65)
 textfield.focus()
 
