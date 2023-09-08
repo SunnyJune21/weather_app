@@ -1,1 +1,1 @@
-# weather_app
+A Weather app, as a Python application, that provides users with the current weather information for a specified city. It uses the OpenWeatherMap API to handle real-time weather data and has a user-friendly GUI. The app allows users to enter the name of a city in a search box and retrieve the corresponding weather information. Upon submitting the search, the app communicates with the OpenWeatherMap API to fetch the weather data for the specified city 
